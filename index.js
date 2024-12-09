@@ -39,9 +39,12 @@ app.post('/users', async (req, res) => {
 
 // Sample route with duplicate code (SonarQube alert for code duplication)
 app.get('/users', async (req, res) => {
-  const users = await User.find();
-
-  res.status(200).send(users);
+  try {
+    const users = await User.find();
+    res.status(200).send(users);
+  } catch (err) {
+    res.status(500).send({ error: 'Error retrieving users' });
+  }
 });
 
 // Start the server
