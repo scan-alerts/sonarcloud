@@ -25,7 +25,7 @@ const User = mongoose.model('User', userSchema);
 
 // Sample route to create a user (with unused parameter, which triggers SonarQube alert)
 app.post('/users', async (req, res) => {
-  const { name } = req.body; // Remove the unnecessary assignment to variable "email"
+  const { name } = req.body;
 
   const user = new User({ name });
 
