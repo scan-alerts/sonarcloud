@@ -24,7 +24,7 @@ const User = mongoose.model('User', userSchema);
 
 // Sample route to create a user
 app.post('/users', async (req, res) => {
-  const { name, email, unusedParam } = req.body; 
+  const { name, email } = req.body; 
 
   const user = new User({ name, email });
 
