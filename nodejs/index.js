@@ -18,7 +18,6 @@ utils.addNumbers(5, "10"); // Passing string instead of number
 console.log("API Key:", config.API_KEY);
 
 // Infinite loop (Bug)
-let condition = true;
-while (condition) {
+while (true) {
     console.log("This loop runs forever"); // No exit condition
 }
