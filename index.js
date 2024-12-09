@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -23,14 +22,13 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// Sample route to create a user (with unused parameter, which triggers SonarQube alert)
+// Sample route to create a user
 app.post('/users', async (req, res) => {
-  const { name, email, unusedParam } = req.body;  // Unused parameter triggers SonarQube alert
-  
+  const { name, email, unusedParam } = req.body; 
+
   const user = new User({ name, email });
 
-  // Console log in production code, triggering SonarQube alert
-  console.log('New user created:', name);
+  console.log('New user created:', name); 
 
   try {
     await user.save();
@@ -40,16 +38,16 @@ app.post('/users', async (req, res) => {
   }
 });
 
-// Sample route with duplicate code (SonarQube alert for code duplication)
+// Sample route with duplicate code
 app.get('/users', async (req, res) => {
   const users = await User.find();
-  const userEmails = users.map(user => user.email); // Duplicate logic here
   
+  const userEmails = users.map(user => user.email); // Duplicate logic here
   const userEmails2 = users.map(user => user.email); // Duplicate code for mapping emails
 
   res.status(200).send(users);
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`); 
 });
