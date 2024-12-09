@@ -40,7 +40,6 @@ app.post('/users', async (req, res) => {
 // Sample route with duplicate code (SonarQube alert for code duplication)
 app.get('/users', async (req, res) => {
   const users = await User.find();
-  const userEmails = users.map(user => user.email);
 
   res.status(200).send(users);
 });
