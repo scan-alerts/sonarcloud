@@ -50,7 +50,6 @@ app.get('/users', async (req, res) => {
   res.status(200).send(users);
 });
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
