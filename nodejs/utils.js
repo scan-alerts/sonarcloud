@@ -13,9 +13,7 @@ function deprecatedFunction() {
 
 // Unhandled promise rejection (Bug)
 function fetchData() {
-    return new Promise((resolve, reject) => {
-        reject("Fetch error");
-    });
+    return Promise.reject(new Error("Fetch error"));
 }
 
 module.exports = {
