@@ -42,8 +42,7 @@ app.post('/users', async (req, res) => {
 app.get('/users', async (req, res) => {
   const users = await User.find();
   
-  const userEmails = users.map(user => user.email); // Duplicate logic here
-  const userEmails2 = users.map(user => user.email); // Duplicate code for mapping emails
+  const userEmails = users.map(user => user.email); // Remove the declaration of the unused 'userEmails' variable.
 
   res.status(200).send(users);
 });
