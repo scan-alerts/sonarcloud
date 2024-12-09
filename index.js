@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const helmet = require("helmet");
 
 // Initialize express app
 const app = express();
@@ -43,11 +42,11 @@ app.post('/users', async (req, res) => {
 app.get('/users', async (req, res) => {
   const users = await User.find();
   
+  const userEmails = users.map(user => user.email); // Duplicate logic here
+  const userEmails2 = users.map(user => user.email); // Duplicate code for mapping emails
+
   res.status(200).send(users);
 });
-
-// Disable x-powered-by header
-app.disable("x-powered-by");
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`); 
