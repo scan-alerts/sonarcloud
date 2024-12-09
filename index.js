@@ -26,7 +26,7 @@ const User = mongoose.model('User', userSchema);
 // Sample route to create a user (with unused parameter, which triggers SonarQube alert)
 app.post('/users', async (req, res) => {
   const { name, email } = req.body;  // Removed unused parameter
-  
+
   const user = new User({ name, email });
 
   // Console log in production code, triggering SonarQube alert
@@ -44,7 +44,7 @@ app.post('/users', async (req, res) => {
 app.get('/users', async (req, res) => {
   const users = await User.find();
   const userEmails = users.map(user => user.email); // Removed duplicate logic
-  
+
   res.status(200).send(users);
 });
 
