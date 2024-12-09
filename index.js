@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const helmet = require("helmet");
 
 // Initialize express app
 const app = express();
@@ -46,6 +47,9 @@ app.get('/users', async (req, res) => {
     res.status(500).send({ error: 'Error retrieving users' });
   }
 });
+
+// Disable x-powered-by header
+app.disable("x-powered-by");
 
 // Start the server
 app.listen(port, () => {
