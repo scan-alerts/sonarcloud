@@ -7,11 +7,9 @@ function calculateDiscount(price, discount) {
     if (discount > 0) {
         if (price > 100) {
             finalPrice = price - (price * discount) / 100;
-        } else if (price <= 100) {
+        } else {
             finalPrice = price - discount;
         }
-    } else if (discount <= 0) {
-        finalPrice = price;
     }
     return finalPrice;
 }
