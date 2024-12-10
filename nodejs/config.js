@@ -1,7 +1,5 @@
-
 function unusedLogic() {
-    let result = 0;
-    result = 10; 
+    let result;
     return; 
 }
 
