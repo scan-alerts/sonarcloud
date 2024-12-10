@@ -4,8 +4,6 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.PORT || 3000;
-
-// Use body parser to parse JSON requests
 app.use(bodyParser.json());
 
 // Connect to MongoDB
