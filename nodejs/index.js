@@ -38,3 +38,13 @@ function calculateCode() {
 function getName() {
     return calculateCode();
 }
+
+function doTheThing() {
+    // implementation
+}
+
+function doOtherThing() {
+    // implementation
+}
+
+const code = "some code";
