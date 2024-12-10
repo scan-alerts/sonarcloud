@@ -25,8 +25,8 @@ function generateReport(data) {
     for (const item of result) {
         console.log(item);
     }
-    for (let k = 0; k < result.length; k++) {
-        result[k] = result[k] * 2;
+    for (const item of result) {
+        result[result.indexOf(item)] = item * 2;
     }
     return result;
 }
