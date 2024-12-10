@@ -25,7 +25,9 @@ router.get('/static-data', (req, res) => {
 
 router.get('/long-operation', (req, res) => {
     const start = Date.now();
-    while (Date.now() - start < 5000) {}
+    while (Date.now() - start < 5000) {
+        // Do nothing
+    }
     res.send('Operation complete');
 });
 
