@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const helmet = require("helmet");
 
-// Initialize express app
 const app = express();
 const port = process.env.PORT || 3000;
 
