@@ -1,5 +1,5 @@
 function unusedLogic() {
-    let result;
+    // let result; // Remove the declaration of the unused 'result' variable
 }
 
 function calculateDiscount(price, discount) {
