@@ -32,6 +32,5 @@ function generateReport(data) {
 }
 
 function example() {
-    // console.log("This will never run.");
     return;
 }
