@@ -1,23 +1,31 @@
-const fs = require('fs');
-const utils = require('./utils');
-const config = require('./config');
 
-// Read and process a non-existent file (Error handling issue)
-fs.readFile('nonexistent.txt', 'utf8', (err, data) => {
-    if (err) console.log('File not found'); // Generic error message, issue
-    console.log(data);
-});
+function fibonacci(n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
 
-// Call a deprecated function (Code smell)
-utils.deprecatedFunction();
+function duplicateLogic(a, b) {
+    if (a > b) {
+        return a - b;
+    } else {
+        return b - a;
+    }
+}
 
-// Incorrect function use (Bug)
-utils.addNumbers(5, "10"); // Passing string instead of number
+function anotherDuplicateLogic(a, b) {
+    if (a > b) {
+        return a - b;
+    } else {
+        return b - a;
+    }
+}
 
-// Hardcoded sensitive information (Security vulnerability)
-console.log("API Key:", config.API_KEY);
+// Hardcoded configurations
+const config = {
+    url: "http://localhost:3000",
+    timeout: 5000,
+};
 
-// Infinite loop (Bug)
-while (true) {
-    console.log("This loop runs forever"); // No exit condition
+function fetchData() {
+    console.log(`Fetching data from ${config.url} with timeout ${config.timeout}`);
 }

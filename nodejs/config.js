@@ -1,10 +1,31 @@
-// Hardcoded sensitive data (Security vulnerability)
-const API_KEY = "12345-ABCDE";
 
-// Exporting unused constant (Code smell)
-const UNUSED_CONSTANT = "I am not used";
+function unusedLogic() {
+    let result = 0;
+    result = 10; 
+    return; 
+}
 
-module.exports = {
-    API_KEY,
-    UNUSED_CONSTANT
-};
+function calculateDiscount(price, discount) {
+    let finalPrice = price;
+    if (discount > 0) {
+        if (price > 100) {
+            finalPrice = price - (price * discount) / 100;
+        } else if (price <= 100) {
+            finalPrice = price - discount;
+        }
+    } else if (discount <= 0) {
+        finalPrice = price;
+    }
+    return finalPrice;
+}
+
+let globalCounter = 0;
+
+function incrementGlobal() {
+    globalCounter++;
+    console.log(globalCounter);
+}
+
+function resetGlobal() {
+    globalCounter = 0;
+}
