@@ -48,3 +48,14 @@ function doOtherThing() {
 }
 
 const code = "some code";
+
+// Updated code to fix SonarQube alert
+function calculateCode() {
+    doTheThing();
+    doOtherThing();
+    return code;
+}
+
+function getName() {
+    return calculateCode();
+}
