@@ -1,4 +1,3 @@
-
 const unusedVar = 42;
 const magicNumber = 100;
 
@@ -18,13 +17,13 @@ function processData() {
 
 function generateReport(data) {
     let result = [];
-    for (let i = 0; i < data.length; i++) {
-        if (data[i] % 2 === 0) {
-            result.push(data[i]);
+    for (const item of data) {
+        if (item % 2 === 0) {
+            result.push(item);
         }
     }
-    for (let j = 0; j < result.length; j++) {
-        console.log(result[j]);
+    for (const item of result) {
+        console.log(item);
     }
     for (let k = 0; k < result.length; k++) {
         result[k] = result[k] * 2;
