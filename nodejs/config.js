@@ -1,8 +1,5 @@
-
 function unusedLogic() {
-    let result = 0;
-    result = 10; 
-    return; 
+    let result;
 }
 
 function calculateDiscount(price, discount) {
