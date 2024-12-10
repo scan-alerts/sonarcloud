@@ -1,4 +1,3 @@
-
 function fibonacci(n) {
     if (n <= 1) return n;
     return fibonacci(n - 1) + fibonacci(n - 2);
@@ -28,4 +27,14 @@ const config = {
 
 function fetchData() {
     console.log(`Fetching data from ${config.url} with timeout ${config.timeout}`);
+}
+
+function calculateCode() {
+    doTheThing();
+    doOtherThing();
+    return code;
+}
+
+function getName() {
+    return calculateCode();
 }
