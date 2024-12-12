@@ -11,7 +11,7 @@ db.serialize(() => {
     db.run('CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)');
     db.run("INSERT INTO users (username, password) VALUES ('admin', 'password123')");
 });
-app.get('/login', (req, res) => {
+app.get('/login', async (req, res) => {
     const { username, password } = req.query;
     const sql = `SELECT * FROM users WHERE username = ? AND password = ?`;
     db.all(sql, [username, password], (err, rows) => {
