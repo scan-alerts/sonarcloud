@@ -11,10 +11,10 @@ db.serialize(() => {
     db.run('CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)');
     db.run("INSERT INTO users (username, password) VALUES ('admin', 'password123')");
 });
-app.get('/login', (req, res) => {
+app.get('/login', async (req, res) => {
     const { username, password } = req.query;
-    const sql = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
-    db.all(sql, [], (err, rows) => {
+    const sql = `SELECT * FROM users WHERE username = ? AND password = ?`;
+    db.all(sql, [username, password], (err, rows) => {
         if (rows.length > 0) {
             res.send('Login successful!');
         } else {
@@ -25,17 +25,21 @@ app.get('/login', (req, res) => {
 
 app.get('/greet', (req, res) => {
     const name = req.query.name || 'Guest';
-    res.send(`<h1>Welcome, ${name}!</h1>`);
+    res.set('Content-Type', 'text/plain');
+    res.send(`Welcome, ${name}!`);
 });
 
 app.get('/redirect', (req, res) => {
-    const { url ,url2 } = req.query;
-    res.redirect(url);
+    const { url } = req.query;
+    if (url.startsWith("https://www.example.com/")) {
+        res.redirect(url);
+    }
 });
 
 app.post('/deserialize', (req, res) => {
     const { data } = req.body;
     const parsed = JSON.parse(data); 
+    res.set('Content-Type', 'text/plain');
     res.send(`Deserialized data: ${JSON.stringify(parsed)}`);
 });
 
@@ -43,9 +47,11 @@ app.get('/error', (req, res) => {
     try {
         throw new Error('Something went wrong!');
     } catch (err) {
-        res.status(500).send(err.stack);
+        res.status(500).set('Content-Type', 'text/plain').send(err.stack);
     }
 });
+
+app.disable("x-powered-by"); // Disable x-powered-by header
 
 const PORT = 3000;
 app.listen(PORT, () => {
