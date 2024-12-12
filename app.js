@@ -1,9 +1,11 @@
 const express = require('express');
-const { add: addFunction } = require('./mathOperations');
+const { add: addFunction, subtract: subtractFunction } = require('./mathOperations');
 const { logMessage } = require('./logger');
 
 const app = express();
 const port = 3000;
+
+app.disable("x-powered-by");
 
 app.get('/add', (req, res) => {
   const { a, b } = req.query;
@@ -24,7 +26,5 @@ app.listen(port, () => {
 });
 
 // file: test.js
-const { subtract: subtractFunction } = require('./mathOperations');
-
 console.log(addFunction(2, 3)); 
 console.log(subtractFunction(5, 2));
