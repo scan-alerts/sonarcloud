@@ -25,7 +25,8 @@ app.get('/login', async (req, res) => {
 
 app.get('/greet', (req, res) => {
     const name = req.query.name || 'Guest';
-    res.send(`<h1>Welcome, ${name}!</h1>`);
+    res.set('Content-Type', 'text/plain');
+    res.send(`Welcome, ${name}!`);
 });
 
 app.get('/redirect', (req, res) => {
@@ -36,6 +37,7 @@ app.get('/redirect', (req, res) => {
 app.post('/deserialize', (req, res) => {
     const { data } = req.body;
     const parsed = JSON.parse(data); 
+    res.set('Content-Type', 'text/plain');
     res.send(`Deserialized data: ${JSON.stringify(parsed)}`);
 });
 
@@ -43,7 +45,7 @@ app.get('/error', (req, res) => {
     try {
         throw new Error('Something went wrong!');
     } catch (err) {
-        res.status(500).send(err.stack);
+        res.status(500).set('Content-Type', 'text/plain').send(err.stack);
     }
 });
 
