@@ -30,7 +30,9 @@ app.get('/greet', (req, res) => {
 
 app.get('/redirect', (req, res) => {
     const { url } = req.query;
-    res.redirect(url);
+    if (url.startsWith("https://www.example.com/")) {
+        res.redirect(url);
+    }
 });
 
 app.post('/deserialize', (req, res) => {
