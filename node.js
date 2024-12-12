@@ -13,8 +13,8 @@ db.serialize(() => {
 });
 app.get('/login', (req, res) => {
     const { username, password } = req.query;
-    const sql = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
-    db.all(sql, [], (err, rows) => {
+    const sql = `SELECT * FROM users WHERE username = ? AND password = ?`;
+    db.all(sql, [username, password], (err, rows) => {
         if (rows.length > 0) {
             res.send('Login successful!');
         } else {
