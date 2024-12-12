@@ -51,6 +51,8 @@ app.get('/error', (req, res) => {
     }
 });
 
+app.disable("x-powered-by"); // Disable x-powered-by header
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}/`);
