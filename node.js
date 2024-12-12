@@ -29,7 +29,7 @@ app.get('/greet', (req, res) => {
 });
 
 app.get('/redirect', (req, res) => {
-    const { url ,url2 } = req.query;
+    const { url } = req.query;
     res.redirect(url);
 });
 
