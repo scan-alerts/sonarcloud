@@ -6,4 +6,8 @@ function logError(error) {
   console.error(error);
 }
 
-module.exports = { logMessage, logError };
+function logDebug(debug) {
+  console.debug(debug);
+}
+
+module.exports = { logMessage, logError, logDebug };
