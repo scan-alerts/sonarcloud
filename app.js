@@ -28,3 +28,6 @@ app.listen(port, () => {
 // file: test.js
 console.log(addFunction(2, 3)); 
 console.log(subtractFunction(5, 2));
+
+// Test Case
+console.log(addFunction(10, 5));
