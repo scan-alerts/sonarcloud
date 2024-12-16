@@ -7,3 +7,7 @@ function logError(error) {
 }
 
 module.exports = { logMessage, logError };
+
+// Test case
+logMessage("This is a test message");
+logError("This is a test error");
