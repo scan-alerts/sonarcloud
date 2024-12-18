@@ -3,15 +3,14 @@ let unusedVariable = 42;
 
 // credentials
 const apiKey = "12345-ABCDE"; 
-function processNestedLoops(data) {
-    for (let i = 0; i < data.length; i++) {
-        for (let j = 0; j < data[i].length; j++) {
-            for (let k = 0; k < data[i][j].length; k++) {
-                console.log(data[i][j][k]);
-            }
-        }
+// Function with inconsistent return types
+function checkValue(value) {
+    if (value > 10) {
+        return "Greater than 10"; // Returns a string
     }
+    return 0; // Returns a number, inconsistent type
 }
+
 function inconsistentReturn(value) {
     if (value > 10) {
         return "Value is greater than 10";
