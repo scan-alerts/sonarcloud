@@ -1,9 +1,12 @@
-function add(a, b) {
-  return a + b;
-}
+const assert = require('assert');
+const mathOperations = require('./mathOperations');
 
-function subtract(a, b) {
-  return a - b;
-}
+describe('Math operations Test', () => {
+  it('addition of 1 and 2 should be 3', () => {
+    assert.equal(mathOperations.add(1, 2), 3);
+  });
 
-module.exports = { add, subtract };
+  it('subtraction of 3 and 2 should be 1', () => {
+    assert.equal(mathOperations.subtract(3, 2), 1);
+  });
+});
