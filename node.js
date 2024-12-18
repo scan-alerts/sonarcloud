@@ -1,53 +1,65 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const sqlite3 = require('sqlite3').verbose(); // Using SQLite for simplicity
+// Importing chai for assertion
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+chai.use(chaiHttp);
 
-const app = express();
-const db = new sqlite3.Database(':memory:');
+// Below are the test cases for each endpoint
 
-app.use(bodyParser.urlencoded({ extended: true }));
+describe('Test login endpoint', function() {
+  it('should login successful', function(done) {
+    chai.request(app)
+      .get('/login')
+      .query({username: "admin", password: "password123"})
+      .end((err, res) => {
+        chai.expect(res.text).to.equal('Login successful!');
+        done();
+      });
+  }); 
 
-db.serialize(() => {
-    db.run('CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)');
-    db.run("INSERT INTO users (username, password) VALUES ('admin', 'password123')");
-});
-app.get('/login', (req, res) => {
-    const { username, password } = req.query;
-    const sql = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
-    db.all(sql, [], (err, rows) => {
-        if (rows.length > 0) {
-            res.send('Login successful!');
-        } else {
-            res.send('Invalid credentials!');
-        }
-    });
-});
+  it('should return Invalid credentials', function(done) {
+    chai.request(app)
+      .get('/login')
+      .query({username: "not_admin", password: "not_password"})
+      .end((err, res) => {
+        chai.expect(res.text).to.equal('Invalid credentials!');
+        done();
+      });
+  });
 
-app.get('/greet', (req, res) => {
-    const name = req.query.name || 'Guest';
-    res.send(`<h1>Welcome, ${name}!</h1>`);
-});
-
-app.get('/redirect', (req, res) => {
-    const { url ,url2 } = req.query;
-    res.redirect(url);
 });
 
-app.post('/deserialize', (req, res) => {
-    const { data } = req.body;
-    const parsed = JSON.parse(data); 
-    res.send(`Deserialized data: ${JSON.stringify(parsed)}`);
+describe('Test greet endpoint', function() {
+  it('should greet the person', function(done) {
+    chai.request(app)
+      .get('/greet')
+      .query({name: "John"})
+      .end((err, res) => {
+        chai.expect(res.text).to.equal('<h1>Welcome, John!</h1>');
+        done();
+      });
+  });
+
 });
 
-app.get('/error', (req, res) => {
-    try {
-        throw new Error('Something went wrong!');
-    } catch (err) {
-        res.status(500).send(err.stack);
-    }
+describe('Test deserialize endpoint', function() {
+  it('should return Deserialized data', function(done) {
+    chai.request(app)
+      .post('/deserialize')
+      .send({data: JSON.stringify({foo: "bar"})})
+      .end((err, res) => {
+        chai.expect(res.text).to.equal('Deserialized data: {"foo":"bar"}');
+        done();
+      });
+  });
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/`);
+describe('Test error endpoint', function() {
+  it('should return error stack', function(done) {
+    chai.request(app)
+      .get('/error')
+      .end((err, res) => {
+        chai.expect(res.status).to.equal(500);
+        done();
+      });
+  });
 });
