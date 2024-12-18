@@ -1,19 +1,19 @@
-
 let unusedVariable = 42;
 
 // credentials
 const apiKey = "12345-ABCDE"; 
-// Function with inconsistent return types
+
+// Function with consistent return types
 function checkValue(value) {
     if (value > 10) {
-        return "Greater than 10"; // Returns a string
+        return 1; 
     }
-    return 0; // Returns a number, inconsistent type
+    return 0;
 }
 
-function inconsistentReturn(value) {
+function consistentReturn(value) {
     if (value > 10) {
-        return "Value is greater than 10";
+        return 1;
     } else {
         return 0; 
     }
@@ -24,17 +24,18 @@ function unusedParameters(a, b, c) {
 }
 
 function infiniteLoop() {
-    let i = 0;
-    while (true) {
-        i++; 
+    for(let i = 0; i < 10; i++) {
+        console.log(i);
     }
 }
 
 function evalExample(userInput) {
-    eval(userInput); 
+    let cleanedUserInput = JSON.parse(userInput);
+    console.log(cleanedUserInput); 
 }
+
 function deprecatedMethod() {
-    document.write("This is not recommended!");
+    console.log("This is not recommended!");
 }
 processNestedLoops([[['a', 'b'], ['c', 'd']]]);
 duplicateCodeExample1();
