@@ -26,7 +26,7 @@ app.listen(port, () => {
 });
 
 // file: test.js
-const MathOperations = require('./mathOperations');
+// const MathOperations = require('./mathOperations');
 
 console.log(MathOperations.add(2, 3)); 
 console.log(MathOperations.subtract(5, 2));
