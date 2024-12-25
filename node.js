@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 db.serialize(() => {
     db.run('CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)');
-    db.run("INSERT INTO users (username, password) VALUES ('admin', 'password123')");
+    db.run("INSERT INTO users (username, password) VALUES (?, ?)", ['admin', 'password123']);
 });
 
 app.get('/login', (req, res) => {
